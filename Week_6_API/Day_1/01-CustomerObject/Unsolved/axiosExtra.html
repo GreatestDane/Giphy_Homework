@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>single AXIOS</title>
+</head>
+
+<body>
+
+    <h1 id="title"></h1>
+    <p id="release-year"></p>
+    <p id="actors"></p>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+
+        var title = "emoji movie";
+        var reqUrl = "http://www.omdbapi.com/?apikey=trilogy&t=" + title;
+
+        axios({
+            method: "GET",
+            url: reqUrl
+        })
+        .then(function(response){
+            console.log(response)
+            $("#title").html(response.data.Title);
+            $("#release-year").html(response.data.Year);
+            $("#actors").html(response.data.Actors);
+            $("<p>").attr("id", "genre").appendTo("#actors");
+            $("#genre").html(response.data.Genre);
+            $("<img>").attr("src", response.data.Poster).appendTo("#genre");
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
+
+    
+
+    </script>
+</body>

@@ -12,10 +12,32 @@
 </head>
 
 <body>
-    
-    
+    <div class="container">
+        <!-- Make the first row for the buttons -->
+        <div class="row">
+            <div class="col-md-12">
+                <span id="button-col"></span>
+                <hr>
+            </div>
+        </div>
+        <!-- Make a new row with two columns, one for giphs, one for the request bar -->
+        <div class="row">
+            <!-- gif column -->
+            <div class ="col-md-8">
+                <span id="giph-col"></span>
+            </div>
+            <!-- search bar column -->
+            <div class="col-md-4">
+                    <form>
+                            <span id="gif-search">Search a gif! <input id="gif" type="text" ><input id="search-button" value="Search" type="submit"></span>
+                          </form>
+            </div>
+        </div>
 
 
+
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="./javascript/app.js"></script>
