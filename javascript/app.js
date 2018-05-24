@@ -1,7 +1,9 @@
+
 // start off the page by creating a bunch of buttons from an array 
 var animals = ["Cat", "Lion", "Alligator", "Dinosaur", "Dragon", "Unicorn", "Pegasus", "Gryffin", "A real animal", "Spider", "Kermit"]
 var animalButton;
 var APIKey = "4LlS5TiESc6S7Y1FCFD5Fh7dNug7glhU";
+ 
 
 // Use a for loop to actually create the buttons
     for (var i = 0; i < animals.length; i++) {
@@ -25,7 +27,21 @@ $("#search-button").on("click", function () {
 
 
 $(document).on("click", ".animal-button", function(){
-    alert("ANIMAL BUTTON OF: " + $(this).val());
+    var animal = $(this).val();
+    alert("ANIMAL BUTTON OF: " + animal);
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + APIKey + "&tag=" +animal + "&rating=G";
+
+    $.ajax({
+        Url: queryURL,
+        Method: "GET"
+        })
+        .then(function(response) {
+        console.log(response);
+        })
+        .catch(function(error) {
+        console.error(error);
+        })
+        
 });
 
 
