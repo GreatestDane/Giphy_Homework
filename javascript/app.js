@@ -25,22 +25,37 @@ $("#search-button").on("click", function () {
     $("#gif").val(" ");
 });
 
-
+//Create the on click event for the buttons to display the corresponding gif
 $(document).on("click", ".animal-button", function(){
+    $("#gif-col").empty();
+    // Create a variable that contains the value of the button
     var animal = $(this).val();
     alert("ANIMAL BUTTON OF: " + animal);
+    // Create the query URL
     var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + APIKey + "&tag=" +animal + "&rating=G";
 
-    $.ajax({
-        Url: queryURL,
-        Method: "GET"
+    // Make an API call to get the gifs
+    // Also make it happen 10 times to get 10 random gifs
+    for (var i = 0; i < 10; i ++) {
+    axios({
+        url: queryURL,
+        method: "GET"
         })
         .then(function(response) {
         console.log(response);
+        console.log(response.data);
+        console.log(response.data.data.image_original_url);
+
+        var imageUrl = response.data.data.image_original_url;
+        var image = $("<img>");
+        image.attr("src", imageUrl);
+        image.attr("alt", "random-gif");
+        $("#gif-col").prepend(image);
         })
         .catch(function(error) {
         console.error(error);
         })
+    };
         
 });
 
